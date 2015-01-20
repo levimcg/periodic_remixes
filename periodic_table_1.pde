@@ -17,7 +17,7 @@ void setup(){
   noStroke();
   textAlign(CENTER);
   
-  Table periodicData = loadTable("periodic-table-split.csv");
+  Table periodicData = loadTable("periodic-table-alpha.csv");
   int dataRows = periodicData.getRowCount();
   
   float x_start = 0;
@@ -26,11 +26,13 @@ void setup(){
   for (int i = 0; i < dataRows; i++){
     
     int drawCount = i;
-    float as_temp = map(periodicData.getFloat(i, 1), 0, 300, 0, 400);
+    float as_temp = map(periodicData.getFloat(i, 0), 0, 300, 0, 700);
+    String symbol_temp = periodicData.getString(i, 1); 
+    float weight_temp = periodicData.getFloat(i, 0);
     x_start += barSize + gutterSize;
-    drawElement(y_start, x_start, elementColor, as_temp);
+    drawElement(y_start, x_start, elementColor, as_temp, symbol_temp, weight_temp);
     
-    println(periodicData.getString(i,2));
+    println(symbol_temp);
   
   }
   
@@ -38,8 +40,14 @@ void setup(){
 
 }
 
-void drawElement(float xloc, float yloc, color fillColor, float atomicSize){
+void drawElement(float xloc, float yloc, color fillColor, float atomicSize, String atomic_symbol, float atomic_weight){
   fill(fillColor);
-  rect(xloc, yloc, atomicSize, barSize);  
+  rect(xloc, yloc, atomicSize, barSize);
+  pushMatrix();
+  translate(atomicSize, yloc);
+  fill(#ffffff);
+  text(atomic_symbol, 20, 10);
+  text(atomic_weight, 50, 10);
+  popMatrix();  
 }
 
