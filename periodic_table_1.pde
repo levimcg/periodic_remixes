@@ -17,7 +17,7 @@ void setup(){
   noStroke();
   textAlign(CENTER);
   
-  Table periodicData = loadTable("periodic-table-alpha.csv");
+  Table periodicData = loadTable("periodic-chronological.csv");
   int dataRows = periodicData.getRowCount();
   
   float x_start = 0;
@@ -26,9 +26,9 @@ void setup(){
   for (int i = 0; i < dataRows; i++){
     
     int drawCount = i;
-    float as_temp = map(periodicData.getFloat(i, 0), 0, 300, 0, 700);
-    String symbol_temp = periodicData.getString(i, 1); 
-    float weight_temp = periodicData.getFloat(i, 0);
+    float as_temp = map(periodicData.getFloat(i, 3), 0, 300, 0, 700);
+    String symbol_temp = periodicData.getString(i, 2); 
+    float weight_temp = periodicData.getFloat(i, 3);
     x_start += barSize + gutterSize;
     drawElement(y_start, x_start, elementColor, as_temp, symbol_temp, weight_temp);
     
