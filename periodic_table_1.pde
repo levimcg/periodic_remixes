@@ -3,7 +3,7 @@
 import processing.pdf.*;
 
 int gutterSize = 4;
-int barSize = 8;
+int barSize = 6;
 int moduleSize = 0;
 float xCurrent = 0;
 float yCurrent = 0;
@@ -11,7 +11,7 @@ color elementColor = color(0, 60, 200, 200);
 
 void setup(){
   size(900, 1200);
-  beginRecord(PDF, "periodic.pdf");
+  beginRecord(PDF, "periodic-chrono.pdf");
   background(25, 25, 25);
   smooth();
   noStroke();
@@ -19,35 +19,30 @@ void setup(){
   
   Table periodicData = loadTable("periodic-chronological.csv");
   int dataRows = periodicData.getRowCount();
-  
   float x_start = 0;
   float y_start = 0;
   
   for (int i = 0; i < dataRows; i++){
-    
-    int drawCount = i;
-    float as_temp = map(periodicData.getFloat(i, 3), 0, dataRows, 0, width);
+    float as_temp = map(periodicData.getFloat(i, 3), 0, dataRows, 0, width - 25);
     String symbol_temp = periodicData.getString(i, 2); 
-    float weight_temp = periodicData.getFloat(i, 3);
-    x_start += barSize + gutterSize;
-    drawElement(y_start, x_start, elementColor, as_temp, symbol_temp, weight_temp);
-    
+    float number_temp = periodicData.getFloat(i, 3);
+    drawElement(x_start, y_start, elementColor, as_temp, symbol_temp, number_temp);
+    y_start += barSize + gutterSize;
     println(symbol_temp);
-  
   }
   
   endRecord();
 
 }
 
-void drawElement(float xloc, float yloc, color fillColor, float atomicSize, String atomic_symbol, float atomic_weight){
+void drawElement(float xloc, float yloc, color fillColor, float atomicSize, String atomic_symbol, float atomic_number){
   fill(fillColor);
   rect(xloc, yloc, atomicSize, barSize);
   pushMatrix();
   translate(atomicSize, yloc);
   fill(#ffffff);
   text(atomic_symbol, 20, 10);
-  text(atomic_weight, 50, 10);
+  text(atomic_number, 50, 10);
   popMatrix();  
 }
 
