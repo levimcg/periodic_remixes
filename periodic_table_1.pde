@@ -8,6 +8,10 @@ int moduleSize = 0;
 float xCurrent = 0;
 float yCurrent = 0;
 color elementColor = color(0, 60, 200, 200);
+color ancientColor = color(0, 166, 81);
+color dupColor = color(227, 31, 38);
+color fillColor;
+String dup_check;
 
 void setup(){
   size(900, 1200);
@@ -17,18 +21,31 @@ void setup(){
   noStroke();
   textAlign(CENTER);
   
-  Table periodicData = loadTable("periodic-chronological.csv");
+  Table periodicData = loadTable("periodic-chronological.csv", "header");
   int dataRows = periodicData.getRowCount();
   float x_start = 0;
-  float y_start = 0;
+  float y_start = gutterSize;
   
   for (int i = 0; i < dataRows; i++){
     float as_temp = map(periodicData.getFloat(i, 3), 0, dataRows, 0, width - 25);
+    String year_temp = periodicData.getString(i, 0);
     String symbol_temp = periodicData.getString(i, 2); 
     float number_temp = periodicData.getFloat(i, 3);
-    drawElement(x_start, y_start, elementColor, as_temp, symbol_temp, number_temp);
+    
+    if(year_temp.equals("ancient")){
+      fillColor = ancientColor;
+    }
+    else if(dup_check.equals(year_temp)) {
+      fillColor = dupColor;
+    }
+    else {
+      fillColor = elementColor ;
+    }
+ 
+    drawElement(x_start, y_start, fillColor, as_temp, symbol_temp, number_temp);
     y_start += barSize + gutterSize;
-    println(symbol_temp);
+    println(year_temp);
+    dup_check = year_temp;
   }
   
   endRecord();

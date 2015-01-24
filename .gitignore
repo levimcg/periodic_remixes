@@ -6,3 +6,4 @@ application.windows
 *.zip
 *.pdf
 /build-tmp
+*.ai
