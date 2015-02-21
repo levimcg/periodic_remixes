@@ -3,7 +3,8 @@
 
 // This sketch lists the elements of the periodic table
 // in chronological of each element's year of discovery.
-// 
+// It starts in the upper left corner and loops through
+// each element until it finishes in the bottom left corner.
 
 import processing.pdf.*;
 
