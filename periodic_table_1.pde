@@ -32,10 +32,10 @@ void setup() {
   translate(width/2, height/2);
   rotate(radians(270));
   for (int i = 0; i < dataRows; i++) {
-    float an_temp = map(periodicData.getFloat(i, 0), 0, dataRows, 0, width/2);
+    float an_temp = map(periodicData.getFloat(i, 0), 0, dataRows, 0, (width -100)/2);
     String symbol_temp = periodicData.getString(i, 1); 
 
-    drawElement(8, 0, elementColor, an_temp, symbol_temp);
+    drawElement(70, 0, elementColor, an_temp, symbol_temp);
     y_start += barSize + gutterSize;
     rotate(TWO_PI/dataRows);
   }
