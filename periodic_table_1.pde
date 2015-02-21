@@ -3,6 +3,7 @@
 
 // This sketch lists the elements of the periodic table
 // radially in chronological of each element's year of discovery.
+// It starts at the 12 o'clock position and loops through 360 degrees.
 
 import processing.pdf.*;
 
@@ -29,6 +30,7 @@ void setup() {
   float y_start = gutterSize;
   // Move coordinates to the center
   translate(width/2, height/2);
+  rotate(radians(270));
   for (int i = 0; i < dataRows; i++) {
     float an_temp = map(periodicData.getFloat(i, 3), 0, dataRows, 0, width/2);
     String year_temp = periodicData.getString(i, 0);
@@ -37,10 +39,10 @@ void setup() {
     if (year_temp.equals("ancient")) {
       fillColor = ancientColor;
     } else {
-      fillColor = elementColor ;
+      fillColor = elementColor;
     } 
 
-    drawElement(8, 0, elementColor, an_temp, symbol_temp);
+    drawElement(8, 0, fillColor, an_temp, symbol_temp);
     y_start += barSize + gutterSize;
     rotate(TWO_PI/dataRows);
   }
