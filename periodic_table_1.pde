@@ -18,12 +18,12 @@ color fillColor;
 
 void setup() {
   size(1000, 1500);
-  beginRecord(PDF, "periodic-radial.pdf");
+  beginRecord(PDF, "periodic-radial-chronological.pdf");
   background(baseColor);
   smooth();
   noStroke();
 
-  Table periodicData = loadTable("periodic-table-alpha.csv");
+  Table periodicData = loadTable("periodic-chronological.csv");
   int dataRows = periodicData.getRowCount();
   float x_start = 0;
   float y_start = gutterSize;
