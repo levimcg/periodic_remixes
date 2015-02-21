@@ -13,7 +13,7 @@ float xCurrent = 0;
 float yCurrent = 0;
 color baseColor = color(249, 249, 245);
 color elementColor = color(46, 186, 128);
-color ancientColor = color(236, 152, 141);
+color ancientColor = color(255, 0, 156);
 color fillColor;
 
 void setup() {
@@ -30,7 +30,7 @@ void setup() {
   // Move coordinates to the center
   translate(width/2, height/2);
   for (int i = 0; i < dataRows; i++) {
-    float an_temp = map(periodicData.getFloat(i, 3), 0, dataRows, 0, height/2);
+    float an_temp = map(periodicData.getFloat(i, 3), 0, dataRows, 0, width/2);
     String year_temp = periodicData.getString(i, 0);
     String symbol_temp = periodicData.getString(i, 1);
 
