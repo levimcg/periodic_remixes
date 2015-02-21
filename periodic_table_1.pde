@@ -2,7 +2,8 @@
 // levimcg.com
 
 // This sketch lists the elements of the periodic table
-// in chronological of each element's year of discovery.
+// in alphabetical displaying the atomic number. It starts at the
+// 12 o'clock position and loops 360 degrees
 // 
 
 import processing.pdf.*;
@@ -18,7 +19,7 @@ color fillColor;
 
 void setup() {
   size(1000, 1500);
-  beginRecord(PDF, "periodic-radial.pdf");
+  beginRecord(PDF, "periodic-radial-alpha.pdf");
   background(baseColor);
   smooth();
   noStroke();
@@ -29,6 +30,7 @@ void setup() {
   float y_start = gutterSize;
   // Move coordinates to the center
   translate(width/2, height/2);
+  rotate(radians(270));
   for (int i = 0; i < dataRows; i++) {
     float an_temp = map(periodicData.getFloat(i, 0), 0, dataRows, 0, width/2);
     String symbol_temp = periodicData.getString(i, 1); 
