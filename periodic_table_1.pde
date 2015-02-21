@@ -42,7 +42,7 @@ void setup() {
       fillColor = elementColor;
     } 
 
-    drawElement(80, 0, fillColor, an_temp, symbol_temp);
+    drawElement(70, 0, fillColor, an_temp, symbol_temp);
     y_start += barSize + gutterSize;
     rotate(TWO_PI/dataRows);
   }
