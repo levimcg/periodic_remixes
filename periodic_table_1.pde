@@ -8,8 +8,8 @@
 
 import processing.pdf.*;
 
-float gutterSize = 7.5;
-float barSize = 5;
+float gutterSize = 6.5;
+float barSize = 3;
 int moduleSize = 0;
 float xCurrent = 0;
 float yCurrent = 0;
