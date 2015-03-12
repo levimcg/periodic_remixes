@@ -9,17 +9,14 @@ import processing.pdf.*;
 
 float gutterSize = 7.5;
 float barSize = 3;
-int moduleSize = 0;
-float xCurrent = 0;
-float yCurrent = 0;
-color baseColor = color(249, 249, 245);
-color elementColor = color(46, 186, 128);
-color ancientColor = color(255, 0, 156);
+color baseColor = color(56, 53, 72);
+color elementColor = color(0, 185, 111);
+color ancientColor = color(255, 255, 255);
 color fillColor;
 
 void setup() {
   size(1000, 1500);
-  beginRecord(PDF, "periodic-radial-chronological.pdf");
+  beginRecord(PDF, "periodic-remix-polar-chrono.pdf");
   background(baseColor);
   smooth();
   noStroke();
@@ -34,7 +31,6 @@ void setup() {
   for (int i = 0; i < dataRows; i++) {
     float an_temp = map(periodicData.getFloat(i, 3), 0, dataRows, 0, (width - 100)/2);
     String year_temp = periodicData.getString(i, 0);
-    String symbol_temp = periodicData.getString(i, 1);
 
     if (year_temp.equals("ancient")) {
       fillColor = ancientColor;
@@ -42,7 +38,7 @@ void setup() {
       fillColor = elementColor;
     } 
 
-    drawElement(70, 0, fillColor, an_temp, symbol_temp);
+    drawElement(70, 0, fillColor, an_temp);
     y_start += barSize + gutterSize;
     rotate(TWO_PI/dataRows);
   }
@@ -50,8 +46,9 @@ void setup() {
   endRecord();
 }
 
-void drawElement(float xloc, float yloc, color fillColor, float atomicSize, String atomic_symbol) {
+// Draw element function
+void drawElement(float xloc, float yloc, color fillColor, float atomicNumber) {
   fill(fillColor);
-  rect(xloc, yloc, atomicSize, barSize);
+  rect(xloc, yloc, atomicNumber, barSize);
 }
 
