@@ -1,24 +1,20 @@
 // Periodic Remixes by Levi McGranahan
 // levimcg.com
 
-// This sketch lists the elements of the periodic table
-// in chronological of each element's year of discovery.
-// 
+// This sketch shows the atomic number of each element
+// in the periodic table in alphabetical order.
 
 import processing.pdf.*;
 
 float gutterSize = 6.5;
 float barSize = 3;
-int moduleSize = 0;
-float xCurrent = 0;
-float yCurrent = 0;
-color baseColor = color(240, 90, 63);
-color elementColor = color(190, 63, 52);
+color baseColor = color(56, 53, 72);
+color elementColor = color(0, 185, 111);
 color fillColor;
 
 void setup() {
   size(1000, 1500);
-  beginRecord(PDF, "periodic-alpha.pdf");
+  beginRecord(PDF, "periodic-remix-bar-alpha.pdf");
   background(baseColor);
   smooth();
   noStroke();
@@ -31,17 +27,16 @@ void setup() {
 
   for (int i = 0; i < dataRows; i++) {
     float an_temp = map(periodicData.getFloat(i, 0), 0, dataRows, 0, width - 25);
-    String symbol_temp = periodicData.getString(i, 1); 
 
-    drawElement(x_start, y_start, elementColor, an_temp, symbol_temp);
+    drawElement(x_start, y_start, elementColor, an_temp);
     y_start += barSize + gutterSize;
   }
 
   endRecord();
 }
 
-void drawElement(float xloc, float yloc, color fillColor, float atomicSize, String atomic_symbol) {
+// Function that draws the bars
+void drawElement(float xloc, float yloc, color fillColor, float atomicNumber) {
   fill(fillColor);
-  rect(xloc, yloc, atomicSize, barSize);
+  rect(xloc, yloc, atomicNumber, barSize);
 }
-
